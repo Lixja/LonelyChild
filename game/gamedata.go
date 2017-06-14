@@ -4,5 +4,5 @@ import "LonelyChild/gobject"
 
 type GameData struct {
 	TeachedStory bool
-	player       gobject.Player
+	Player       gobject.Player
 }

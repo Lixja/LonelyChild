@@ -25,6 +25,18 @@ type GObject struct {
 	NeutralSentence     string
 }
 
+func (g *GObject) NewGObject(name string, hp, def, atk, lv, neededhelp int) {
+	g.Name = name
+	g.Hp = hp
+	g.Chp = hp
+	g.Def = def
+	g.Atk = atk
+	g.Lv = lv
+	g.NeededHelp = neededhelp
+	g.Exp = 0
+	g.PositionOfSentences = 0
+}
+
 func (g GObject) Damage(atk int) int {
 	damage := atk / g.Def
 	g.Chp -= damage

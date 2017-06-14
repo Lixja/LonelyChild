@@ -8,3 +8,9 @@ type Player struct {
 	TalkedToDeadStone bool
 	HitTheDoor        bool
 }
+
+func NewPlayer(name string) Player {
+	var pl Player
+	pl.NewGObject(name, 10, 2, 3, 1, 1)
+	return pl
+}

@@ -1,7 +1,9 @@
 package game
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"strconv"
 	"time"
 )
@@ -19,7 +21,8 @@ func WritelnSlow(msg string, dur time.Duration) {
 }
 
 func WriteS(msg string) {
-	WritelnSlow(msg, 80)
+	//WritelnSlow(msg, 80)
+	WritelnSlow(msg, 0)
 }
 
 func WriteWall() {
@@ -84,7 +87,7 @@ func GetInputWithQuestionYesNo(question string) bool {
 	WriteWall()
 	WriteS(question + "[y/n]: ")
 	var answer string
-	fmt.Scanf("%s", answer)
+	fmt.Scanf("%s", &answer)
 	if answer == "y" {
 		return true
 	} else if answer == "n" {
@@ -96,12 +99,17 @@ func GetInputWithQuestionYesNo(question string) bool {
 func GetInputWithQuestion(question string) string {
 	WriteWall()
 	WriteS(question + " ")
-	var answer string
-	fmt.Scanf("%s", answer)
+	answer := getInput()
 	return answer
 }
 
 func GetEnter() {
 	WriteS("Press any key to continiue...")
 	fmt.Scanf("")
+}
+
+func getInput() string {
+	reader := bufio.NewReader(os.Stdin)
+	answer, _ := reader.ReadString('\n')
+	return answer
 }

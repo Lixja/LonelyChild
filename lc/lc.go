@@ -6,7 +6,6 @@ import (
 )
 
 func main() {
-	var lcgame game.Game
-	fstage := stage.GetBootStage()
-	lcgame.SetStage(fstage)
+	LCgame := game.NewGame()
+	LCgame.SetStage(stage.GetBootStage())
 }
