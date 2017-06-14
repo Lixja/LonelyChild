@@ -11,8 +11,8 @@ type Game struct {
 
 type Stage struct {
 	LCgame   *Game
-	Start    func()
-	Happened func() int
+	Start    func(*Stage)
+	Happened int
 }
 
 func (g Game) Sleep(dur time.Duration) {
@@ -22,8 +22,8 @@ func (g Game) Sleep(dur time.Duration) {
 func (g Game) SetStage(stage *Stage) int {
 	g.CurrentStage = stage
 	g.CurrentStage.SetGame(g)
-	g.CurrentStage.Start()
-	return g.CurrentStage.Happened()
+	g.CurrentStage.Start(g.CurrentStage)
+	return g.CurrentStage.happen()
 }
 
 func (s Stage) SetGame(lcgame Game) {
@@ -38,4 +38,8 @@ func (g Game) ReadGameData() GameData {
 
 func (g Game) SaveGameData() {
 
+}
+
+func (s Stage) happen() int {
+	return s.Happened
 }
