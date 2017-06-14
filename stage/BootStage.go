@@ -10,11 +10,11 @@ import (
 
 func GetBootStage() *game.Stage {
 	bootStage := new(game.Stage)
-	bootStage.Start = start
+	bootStage.Start = startBootStage
 	return bootStage
 }
 
-func start(s *game.Stage) {
+func startBootStage(s *game.Stage) {
 	game.Writeln("___LonelyChild___")
 	if s.LCgame.Data.TeachedStory {
 		if s.LCgame.Data.Player.Position == 999 {
@@ -27,10 +27,10 @@ func start(s *game.Stage) {
 			if start == 2 {
 
 			} else {
-				//s.LCgame.setStage(new StoryStage());
+				s.LCgame.SetStage(GetStoryStage())
 			}
 		} else if game.GetInputWithQuestionYesNo("Do you want to skip?") {
-			//game.setStage(new StoryStage());
+			s.LCgame.SetStage(GetStoryStage())
 			return
 		}
 	}
@@ -101,12 +101,12 @@ func start(s *game.Stage) {
 		s.LCgame.SaveGameData()
 		game.Writeln("Right.\n" +
 			"Now go and save your soul!")
-		//game.setStage(new StoryStage());
+		s.LCgame.SetStage(GetStoryStage())
 		return
 	} else {
 		game.Writeln(s.LCgame.Data.Player.Name + "!!!")
 		game.WriteS("Go and save yourself!")
-		//game.setStage(new StoryStage());
+		s.LCgame.SetStage(GetStoryStage())
 	}
 }
 
