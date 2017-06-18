@@ -4,6 +4,8 @@ import (
 	"LonelyChild/game"
 	"LonelyChild/gobject"
 	"math/rand"
+	"strconv"
+	"strings"
 )
 
 var LCgame game.Game
@@ -16,8 +18,8 @@ func GetForestStage() *game.Stage {
 }
 
 func startForestStage(s *game.Stage) {
-	LCgame = s.LCgame
-	player = &s.LCgame.Data.Player
+	LCgame := s.LCgame
+	player := &s.LCgame.Data.Player
 	for (player.Position < 100 && player.Position >= 0) || (player.Position >= 500 && player.Position < 600) {
 		switch player.Position {
 		case 0:
@@ -71,7 +73,7 @@ func startForestStage(s *game.Stage) {
 		case 509:
 			gnine()
 		}
-		s.LCgame.SaveGameData()
+		LCgame.SaveGameData()
 	}
 }
 
@@ -155,12 +157,10 @@ func four() {
 }
 
 func five() {
-	List < String > options
-	if player.getKilled(0) { //Check if Stone is already killed.
-		options = Arrays.asList("Look around.", "Search an exit", "Talk with the Snake")
+	options := []string{"Look around.", "Search an exit", "Talk with the Snake"}
 
-	} else {
-		options = Arrays.asList("Look around.", "Search an exit", "Talk with the Snake", "Talk with the Stone")
+	if !player.GetKilled(0) {
+		options = append(options, "Talk with the Stone")
 
 	}
 	answer := game.GetInputWithOptionsV(options, "What do you wanna do?")
@@ -187,9 +187,9 @@ func five() {
 func six() {
 	game.WriteS("You look around.")
 	game.WriteSlow(". . .", 500)
-	answer := rand.IntN(10)
+	answer := rand.Intn(10)
 	if answer < 4 {
-		if LCgame.SetStage(GetFightStage(gobject.GetWolf)) == 1 {
+		if LCgame.SetStage(GetFightStage(gobject.GetWolf())) == 1 {
 			//player.kill(2)
 			player.Position = 505
 		} else {
@@ -258,7 +258,7 @@ func gfour() {
 }
 
 func gfive() {
-	List < String > options = Arrays.asList("Look around for your next victim", "Search for an Exit", "Eat a piece of the Snake")
+	options := []string{"Look around for your next victim", "Search for an Exit", "Eat a piece of the Snake"}
 	answer := game.GetInputWithOptionsV(options, "What do you wanna do?")
 	switch answer {
 	case 0:
@@ -279,7 +279,7 @@ func gfive() {
 		break
 	case 2:
 		game.WriteS("You recovered you hp")
-		player.setChp(player.getHp())
+		player.Chp = player.Hp
 		break
 	default:
 		break
@@ -289,7 +289,7 @@ func gfive() {
 func gsix() {
 	game.WriteS("You look around.")
 	game.WriteSlow(". . .", 500)
-	answer := rand.IntN(10)
+	answer := rand.Intn(10)
 	if answer < 4 {
 		if LCgame.SetStage(GetFightStage(gobject.GetWolf())) == 1 {
 			//player.kill(2)
@@ -333,19 +333,19 @@ func geight() {
 		"Flowey: Nobody will be able to beat us.\n\n")
 	game.WriteS("You feel roots climbing your leg up.\n" +
 		"You consist now of FLOWEY.")
-	player.setName("Fl" + player.getName().toUpperCase())
+	player.Name = "Fl" + strings.ToUpper(player.Name)
 	for i := 0; i < 10; i++ {
-		player.addExp(gobject.GetFlowey())
+		player.AddExp(gobject.GetFlowey())
 	}
-	if player.isLevelUp() {
-		game.WriteS(player.getName() + " reached lv" + player.getLv() + ".")
+	if player.IsLevelUp() {
+		game.WriteS(player.Name + " reached lv" + strconv.Itoa(player.Lv) + ".")
 	}
-	player.setConsistsFlowey(true)
+	player.ConsistsFlowey = true
 	player.Position = 509
 }
 
 func gnine() {
-	if player.isConsistsFlowey() {
+	if player.ConsistsFlowey {
 		game.WriteS("You and Flowey are leaving the forest.")
 	} else {
 		game.WriteS("You are leaving the forest now.")

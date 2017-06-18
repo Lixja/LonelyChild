@@ -21,8 +21,7 @@ func WritelnSlow(msg string, dur time.Duration) {
 }
 
 func WriteS(msg string) {
-	//WritelnSlow(msg, 80)
-	WritelnSlow(msg, 0)
+	WritelnSlow(msg, 80)
 }
 
 func WriteWall() {

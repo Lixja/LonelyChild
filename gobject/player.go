@@ -14,3 +14,7 @@ func NewPlayer(name string) Player {
 	pl.NewGObject(name, 10, 2, 3, 1, 1)
 	return pl
 }
+
+func (p Player) GetKilled(i int) bool {
+	return false
+}
