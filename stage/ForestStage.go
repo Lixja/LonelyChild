@@ -18,7 +18,7 @@ func GetForestStage() *game.Stage {
 }
 
 func startForestStage(s *game.Stage) {
-	LCgame := s.LCgame
+	LCgame := &s.LCgame
 	player := &s.LCgame.Data.Player
 	for (player.Position < 100 && player.Position >= 0) || (player.Position >= 500 && player.Position < 600) {
 		switch player.Position {

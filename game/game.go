@@ -17,6 +17,7 @@ type Game struct {
 type Stage struct {
 	LCgame   *Game
 	Start    func(*Stage)
+	Enemy    gobject.GObject
 	Happened int
 }
 
