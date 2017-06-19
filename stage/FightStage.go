@@ -34,7 +34,7 @@ func startFightStage(s *game.Stage) {
 			break
 		case 1:
 			i := game.GetInputWithOptionsH(enemy.GetFightOptionsAsString(), "Choice")
-			enemy.Help(enemy.FightOptions[i].HelpValue)
+			enemy.Help(&enemy, enemy.FightOptions[i].HelpValue)
 			break
 		}
 		if !enemy.IsDead() && !enemy.IsHelped() {
@@ -42,7 +42,7 @@ func startFightStage(s *game.Stage) {
 				game.Writeln(enemy.Name + " attacked you!\nYou got " + strconv.Itoa(player.Damage(enemy.Atk)) + " damage.")
 			}
 			game.WriteWall()
-			game.WriteS(enemy.NextSentence())
+			game.WriteS(enemy.NextSentence(&enemy))
 			game.WriteWall()
 		}
 	}

@@ -23,6 +23,10 @@ type GObject struct {
 	StartSentence       string
 	DieSentence         string
 	NeutralSentence     string
+
+	//method
+	NextSentence func(g *GObject) string
+	Help         func(g *GObject, i int)
 }
 
 func (g *GObject) NewGObject(name string, hp, def, atk, lv, neededhelp int) {
@@ -35,6 +39,8 @@ func (g *GObject) NewGObject(name string, hp, def, atk, lv, neededhelp int) {
 	g.NeededHelp = neededhelp
 	g.Exp = 0
 	g.PositionOfSentences = 0
+	g.NextSentence = NextSentence
+	g.Help = Help
 }
 
 func (g *GObject) Damage(atk int) int {
@@ -62,7 +68,7 @@ func (g *GObject) IsLevelUp() bool {
 	return false
 }
 
-func (g *GObject) Help(v int) {
+func Help(g *GObject, v int) {
 	g.NeededHelp -= v
 }
 
@@ -80,7 +86,7 @@ func (g GObject) IsHelped() bool {
 	return false
 }
 
-func (g *GObject) NextSentence() string {
+func NextSentence(g *GObject) string {
 	if g.PositionOfSentences < len(g.Sentences) {
 		g.PositionOfSentences++
 	}
