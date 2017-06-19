@@ -20,6 +20,6 @@ func (p Player) GetKilled(i int) bool {
 	return p.KilledEnemies[i]
 }
 
-func (p *Player) kill(i int) {
+func (p *Player) Kill(i int) {
 	p.KilledEnemies[i] = true
 }

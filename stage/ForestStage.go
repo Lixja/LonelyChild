@@ -97,7 +97,7 @@ func zero() {
 
 func one() {
 	if LCgame.SetStage(GetFightStage(gobject.GetMasterStone())) == 1 {
-		player.kill(0)
+		player.Kill(0)
 		player.Position = 502
 	} else {
 		player.Position = 2
@@ -125,12 +125,12 @@ func two() {
 func three() {
 	choice := false
 	if LCgame.SetStage(GetFightStage(gobject.GetSnake())) == 1 {
-		player.kill(1)
+		player.Kill(1)
 		game.WriteS("Stone: Why did you do that?")
 		choice = game.GetInputWithQuestionYesNo("Do you wanna fight Stone?")
 		if choice {
 			if LCgame.SetStage(GetFightStage(gobject.GetMasterStone())) == 1 {
-				player.kill(0)
+				player.Kill(0)
 				player.Position = 504
 				return
 			} else {
@@ -190,7 +190,7 @@ func six() {
 	answer := rand.Intn(10)
 	if answer < 4 {
 		if LCgame.SetStage(GetFightStage(gobject.GetWolf())) == 1 {
-			player.kill(2)
+			player.Kill(2)
 			player.Position = 505
 		} else {
 			player.Position = 5
@@ -198,7 +198,7 @@ func six() {
 	} else if answer < 9 && answer >= 4 {
 		if LCgame.SetStage(GetFightStage(gobject.GetTiger())) == 1 {
 			player.Position = 505
-			player.kill(3)
+			player.Kill(3)
 		} else {
 			player.Position = 5
 		}
@@ -245,7 +245,7 @@ func gtwo() {
 
 func gthree() {
 	if LCgame.SetStage(GetFightStage(gobject.GetSnake())) == 1 {
-		player.kill(1)
+		player.Kill(1)
 		player.Position = 504
 	} else {
 		player.Position = 4
@@ -292,7 +292,7 @@ func gsix() {
 	answer := rand.Intn(10)
 	if answer < 4 {
 		if LCgame.SetStage(GetFightStage(gobject.GetWolf())) == 1 {
-			player.kill(2)
+			player.Kill(2)
 			player.Position = 505
 		} else {
 			player.Position = 505
@@ -300,7 +300,7 @@ func gsix() {
 	} else if answer < 9 && answer >= 4 {
 		if LCgame.SetStage(GetFightStage(gobject.GetTiger())) == 1 {
 			player.Position = 505
-			player.kill(3)
+			player.Kill(3)
 		} else {
 			player.Position = 505
 		}
@@ -321,7 +321,7 @@ func gseven() {
 		"Now it's my time to rule this world.\n" +
 		"*Laugh Laugh*\n")
 	game.WritelnSlow("I will control everything.", 125)
-	player.kill(4)
+	player.Kill(4)
 	game.WriteS("You and Flowey are leaving the forest")
 	player.Position = 509
 	game.GetEnter()
