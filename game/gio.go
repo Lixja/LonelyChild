@@ -11,7 +11,7 @@ import (
 func WriteSlow(msg string, dur time.Duration) {
 	for i := 0; i < len(msg); i++ {
 		fmt.Print(string(msg[i]))
-		//	time.Sleep(dur * time.Millisecond)
+		time.Sleep(dur * time.Millisecond)
 	}
 }
 
