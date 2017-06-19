@@ -7,6 +7,7 @@ type Player struct {
 	SavedSoul         bool
 	TalkedToDeadStone bool
 	HitTheDoor        bool
+	KilledEnemies     [21]bool
 }
 
 func NewPlayer(name string) Player {
@@ -16,5 +17,9 @@ func NewPlayer(name string) Player {
 }
 
 func (p Player) GetKilled(i int) bool {
-	return false
+	return p.KilledEnemies[i]
+}
+
+func (p *Player) kill(i int) {
+	p.KilledEnemies[i] = true
 }

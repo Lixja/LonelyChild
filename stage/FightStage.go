@@ -17,7 +17,7 @@ func GetFightStage(enemy gobject.GObject) *game.Stage {
 
 func startFightStage(s *game.Stage) {
 	options := []string{"FIGHT", "ACT"}
-	player := s.LCgame.Data.Player
+	player := &s.LCgame.Data.Player
 	enemy := s.Enemy
 	game.WriteWall()
 	game.WriteS("You will fight against: ")
@@ -34,7 +34,7 @@ func startFightStage(s *game.Stage) {
 			break
 		case 1:
 			i := game.GetInputWithOptionsH(enemy.GetFightOptionsAsString(), "Choice")
-			enemy.Help(i)
+			enemy.Help(enemy.FightOptions[i].HelpValue)
 			break
 		}
 		if !enemy.IsDead() && !enemy.IsHelped() {

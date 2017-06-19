@@ -11,7 +11,7 @@ import (
 func WriteSlow(msg string, dur time.Duration) {
 	for i := 0; i < len(msg); i++ {
 		fmt.Print(string(msg[i]))
-		time.Sleep(dur * time.Millisecond)
+		//	time.Sleep(dur * time.Millisecond)
 	}
 }
 
@@ -39,12 +39,13 @@ func Writeln(msg string) {
 func GetInputWithOptionsV(options []string, question string) int {
 	WriteWall()
 	max := len(options)
-	for i := 0; i <= max; i++ {
+	for i := 0; i < max; i++ {
 		fmt.Print("[" + strconv.Itoa(i) + "] - " + options[i])
 	}
+	fmt.Print("\n")
 	fmt.Print(question + " ")
 	var answer int
-	fmt.Scanf("%d", &answer)
+	fmt.Scanf("%d\n", &answer)
 	if answer > max || answer < 0 {
 		WriteS("Incorrect Input!\nTry Again!")
 		return GetInputWithOptionsV(options, question)
@@ -55,11 +56,11 @@ func GetInputWithOptionsV(options []string, question string) int {
 func GetInputWithOptionsH(options []string, question string) int {
 	WriteWall()
 	max := len(options)
-	for i := 0; i <= max; i++ {
+	for i := 0; i < max; i++ {
 		fmt.Print("|" + options[i] + "|   ")
 	}
 	fmt.Println("")
-	for i := 0; i <= max; i++ {
+	for i := 0; i < max; i++ {
 		for c := 0; c < len(options[i]); c++ {
 			if c == len(options[i])/2-1 {
 				fmt.Print("[")
@@ -72,9 +73,10 @@ func GetInputWithOptionsH(options []string, question string) int {
 		}
 		fmt.Print("  ")
 	}
+	fmt.Print("\n")
 	fmt.Print(question + " ")
 	var answer int
-	fmt.Scanf("%d", &answer)
+	fmt.Scanf("%d\n", &answer)
 	if answer > max || answer < 0 {
 		WriteS("Incorrect Input!\nTry Again!")
 		return GetInputWithOptionsV(options, question)
@@ -86,7 +88,7 @@ func GetInputWithQuestionYesNo(question string) bool {
 	WriteWall()
 	WriteS(question + "[y/n]: ")
 	var answer string
-	fmt.Scanf("%s", &answer)
+	fmt.Scanf("%s\n", &answer)
 	if answer == "y" {
 		return true
 	} else if answer == "n" {

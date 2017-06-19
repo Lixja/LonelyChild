@@ -105,6 +105,7 @@ func (g Game) SaveGameData() {
 	filec += "\n"
 	player := data.Player
 	filec += player.Name
+	filec += "\n"
 	filec += createEntryI(player.Position)
 	filec += createEntryI(player.Lv)
 	filec += createEntryI(player.Atk)

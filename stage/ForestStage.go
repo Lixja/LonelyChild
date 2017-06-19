@@ -8,8 +8,8 @@ import (
 	"strings"
 )
 
-var LCgame game.Game
-var player gobject.Player
+var LCgame *game.Game
+var player *gobject.Player
 
 func GetForestStage() *game.Stage {
 	forestStage := new(game.Stage)
@@ -18,8 +18,8 @@ func GetForestStage() *game.Stage {
 }
 
 func startForestStage(s *game.Stage) {
-	LCgame := &s.LCgame
-	player := &s.LCgame.Data.Player
+	LCgame = s.LCgame
+	player = &LCgame.Data.Player
 	for (player.Position < 100 && player.Position >= 0) || (player.Position >= 500 && player.Position < 600) {
 		switch player.Position {
 		case 0:

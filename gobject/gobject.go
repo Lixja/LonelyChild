@@ -37,19 +37,19 @@ func (g *GObject) NewGObject(name string, hp, def, atk, lv, neededhelp int) {
 	g.PositionOfSentences = 0
 }
 
-func (g GObject) Damage(atk int) int {
+func (g *GObject) Damage(atk int) int {
 	damage := atk / g.Def
 	g.Chp -= damage
 	return damage
 }
 
-func (g GObject) AddExp(gobj GObject) int {
+func (g *GObject) AddExp(gobj GObject) int {
 	toaddexp := gobj.Lv * gobj.Hp
 	g.Exp += toaddexp
 	return toaddexp
 }
 
-func (g GObject) IsLevelUp() bool {
+func (g *GObject) IsLevelUp() bool {
 	if g.Exp > (g.Lv * g.Atk) {
 		g.Lv++
 		g.Hp += rand.Int()*g.Lv + 1
@@ -62,7 +62,7 @@ func (g GObject) IsLevelUp() bool {
 	return false
 }
 
-func (g GObject) Help(v int) {
+func (g *GObject) Help(v int) {
 	g.NeededHelp -= v
 }
 
@@ -80,7 +80,7 @@ func (g GObject) IsHelped() bool {
 	return false
 }
 
-func (g GObject) NextSentence() string {
+func (g *GObject) NextSentence() string {
 	if g.PositionOfSentences < len(g.Sentences) {
 		g.PositionOfSentences++
 	}
@@ -93,4 +93,9 @@ func (g GObject) GetFightOptionsAsString() []string {
 		foptions = append(foptions, f.Option)
 	}
 	return foptions
+}
+
+func GetNewFightOption(option string, value int) FightOption {
+	op := FightOption{Option: option, HelpValue: value}
+	return op
 }
