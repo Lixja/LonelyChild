@@ -8,6 +8,9 @@ import (
 	"strings"
 )
 
+var LCgame *game.Game
+var player *gobject.Player
+
 func GetBootStage() *game.Stage {
 	bootStage := new(game.Stage)
 	bootStage.Start = startBootStage

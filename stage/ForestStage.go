@@ -8,9 +8,6 @@ import (
 	"strings"
 )
 
-var LCgame *game.Game
-var player *gobject.Player
-
 func GetForestStage() *game.Stage {
 	forestStage := new(game.Stage)
 	forestStage.Start = startForestStage
@@ -23,61 +20,61 @@ func startForestStage(s *game.Stage) {
 	for (player.Position < 100 && player.Position >= 0) || (player.Position >= 500 && player.Position < 600) {
 		switch player.Position {
 		case 0:
-			zero()
+			zerof()
 			break
 		case 1:
-			one()
+			onef()
 			break
 		case 2:
-			two()
+			twof()
 			break
 		case 3:
-			three()
+			threef()
 			break
 		case 4:
-			four()
+			fourf()
 			break
 		case 5:
-			five()
+			fivef()
 			break
 		case 6:
-			six()
+			sixf()
 			break
 		case 7:
-			seven()
+			sevenf()
 			break
 		case 8:
-			eight()
+			eightf()
 			break
 		case 502:
-			gtwo()
+			gtwof()
 			break
 		case 503:
-			gthree()
+			gthreef()
 			break
 		case 504:
-			gfour()
+			gfourf()
 			break
 		case 505:
-			gfive()
+			gfivef()
 			break
 		case 506:
-			gsix()
+			gsixf()
 			break
 		case 507:
-			gseven()
+			gsevenf()
 			break
 		case 508:
-			geight()
+			geightf()
 			break
 		case 509:
-			gnine()
+			gninef()
 		}
 		LCgame.SaveGameData()
 	}
 }
 
-func zero() {
+func zerof() {
 	game.WriteS("You look around.")
 	game.Sleep(1500)
 	game.WriteS("You don't know were you are.\n" +
@@ -95,7 +92,7 @@ func zero() {
 	player.Position = 1
 }
 
-func one() {
+func onef() {
 	if LCgame.SetStage(GetFightStage(gobject.GetMasterStone())) == 1 {
 		player.Kill(0)
 		player.Position = 502
@@ -104,7 +101,7 @@ func one() {
 	}
 }
 
-func two() {
+func twof() {
 	game.WriteS("No.\n")
 	game.Sleep(500)
 	game.WriteS("You feel great for not beeing an asshole.\n")
@@ -122,7 +119,7 @@ func two() {
 	player.Position = 3
 }
 
-func three() {
+func threef() {
 	choice := false
 	if LCgame.SetStage(GetFightStage(gobject.GetSnake())) == 1 {
 		player.Kill(1)
@@ -144,7 +141,7 @@ func three() {
 	}
 }
 
-func four() {
+func fourf() {
 	game.WriteS("Snake: ...\n" +
 		"Snake: I am sorry I attacked you.\n" +
 		"Snake: Every human i saw until now was bad.\n" +
@@ -156,7 +153,7 @@ func four() {
 	player.Position = 5
 }
 
-func five() {
+func fivef() {
 	options := []string{"Look around.", "Search an exit", "Talk with the Snake"}
 
 	if !player.GetKilled(0) {
@@ -184,7 +181,7 @@ func five() {
 	}
 }
 
-func six() {
+func sixf() {
 	game.WriteS("You look around.")
 	game.WritelnSlow(". . .", 500)
 	answer := rand.Intn(10)
@@ -214,7 +211,7 @@ func six() {
 	}
 }
 
-func seven() {
+func sevenf() {
 	game.WriteS("You go the way back.\n" +
 		"You don't know exactly what you will do, but this was to crazy for you.\n" +
 		"You see a flower at the ground.\n")
@@ -228,7 +225,7 @@ func seven() {
 	}
 }
 
-func eight() {
+func eightf() {
 	game.WriteS("Why does the flower know me...\n")
 	game.WriteS("I think i should leave the forest.\n" +
 		"I am scared.\n")
@@ -236,14 +233,14 @@ func eight() {
 	game.GetEnter()
 }
 
-func gtwo() {
+func gtwof() {
 	game.WriteS("Such an idiot.\n" +
 		"After all i got, i know how to punish someone...\n\n" +
 		"You go around and see a snake.\n")
 	player.Position = 503
 }
 
-func gthree() {
+func gthreef() {
 	if LCgame.SetStage(GetFightStage(gobject.GetSnake())) == 1 {
 		player.Kill(1)
 		player.Position = 504
@@ -252,12 +249,12 @@ func gthree() {
 	}
 }
 
-func gfour() {
+func gfourf() {
 	game.WriteS("You have fun doing this.")
 	player.Position = 505
 }
 
-func gfive() {
+func gfivef() {
 	options := []string{"Look around for your next victim", "Search for an Exit", "Eat a piece of the Snake"}
 	answer := game.GetInputWithOptionsV(options, "What do you wanna do?")
 	switch answer {
@@ -286,7 +283,7 @@ func gfive() {
 	}
 }
 
-func gsix() {
+func gsixf() {
 	game.WriteS("You look around.")
 	game.WriteSlow(". . .", 500)
 	answer := rand.Intn(10)
@@ -316,7 +313,7 @@ func gsix() {
 	}
 }
 
-func gseven() {
+func gsevenf() {
 	game.WriteS("What does the flower think who i am?\n" +
 		"Now it's my time to rule this world.\n" +
 		"*Laugh Laugh*\n")
@@ -327,7 +324,7 @@ func gseven() {
 	game.GetEnter()
 }
 
-func geight() {
+func geightf() {
 	game.WriteS("Flowey: We will fusion.\n" +
 		"Flowey: We will be the strongest monster on earth\n" +
 		"Flowey: Nobody will be able to beat us.\n\n")
@@ -344,7 +341,7 @@ func geight() {
 	player.Position = 509
 }
 
-func gnine() {
+func gninef() {
 	if player.ConsistsFlowey {
 		game.WriteS("You and Flowey are leaving the forest.")
 	} else {
