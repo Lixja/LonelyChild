@@ -25,7 +25,7 @@ func startFightStage(s *game.Stage) {
 	game.WriteWall()
 	game.Writeln(enemy.StartSentence)
 	game.WriteWall()
-	for !enemy.IsDead() && !enemy.IsHelped() && !player.IsDead() {
+	for !enemy.IsDead(&enemy) && !enemy.IsHelped() && !player.IsDead(&enemy) {
 		printStats(enemy)
 		printStats(player.GObject)
 		switch game.GetInputWithOptionsH(options, "Choice") {
@@ -37,7 +37,7 @@ func startFightStage(s *game.Stage) {
 			enemy.Help(&enemy, enemy.FightOptions[i].HelpValue)
 			break
 		}
-		if !enemy.IsDead() && !enemy.IsHelped() {
+		if !enemy.IsDead(&enemy) && !enemy.IsHelped() {
 			if !attackBlocked(enemy) {
 				game.Writeln(enemy.Name + " attacked you!\nYou got " + strconv.Itoa(player.Damage(enemy.Atk)) + " damage.")
 			}
@@ -46,7 +46,7 @@ func startFightStage(s *game.Stage) {
 			game.WriteWall()
 		}
 	}
-	if enemy.IsDead() {
+	if enemy.IsDead(&enemy) {
 		game.WritelnSlow(enemy.DieSentence, 50)
 		game.Write("You got " + strconv.Itoa(player.AddExp(enemy)) + " exp")
 		game.WritelnSlow("...", 50)
@@ -58,13 +58,13 @@ func startFightStage(s *game.Stage) {
 		player.Chp = player.Hp
 	}
 	game.WriteWall()
-	if enemy.IsHelped() && !enemy.IsDead() {
+	if enemy.IsHelped() && !enemy.IsDead(&enemy) {
 		s.Happened = 0
-	} else if !enemy.IsHelped() && enemy.IsDead() {
+	} else if !enemy.IsHelped() && enemy.IsDead(&enemy) {
 		s.Happened = 1
-	} else if enemy.IsHelped() && enemy.IsDead() {
+	} else if enemy.IsHelped() && enemy.IsDead(&enemy) {
 		s.Happened = 2
-	} else if player.IsDead() {
+	} else if player.IsDead(&enemy) {
 		if enemy.Name != player.Name {
 			game.WriteS("Y0u D1eD")
 			os.Exit(0)

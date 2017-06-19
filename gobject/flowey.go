@@ -9,12 +9,12 @@ func GetFlowey() GObject {
 	flowey.Sentences = append(flowey.Sentences, "I know you.", "I know you better than you think.", "I saw how you was tortured",
 		"I know what you want.", "Should I help you?")
 	flowey.FightOptions = append(flowey.FightOptions, GetNewFightOption("Mercy", 0), GetNewFightOption("Talk", 0))
-	flowey.Help = help
-	flowey.NextSentence = nextSentence
+	flowey.Help = helpFlowey
+	flowey.NextSentence = nextSentenceFlowey
 	return flowey
 }
 
-func help(g *GObject, i int) {
+func helpFlowey(g *GObject, i int) {
 	if g.FightOptions[0].Option == "Accept" {
 		if i == 0 {
 			g.DieSentence = "Great decision partner."
@@ -28,7 +28,7 @@ func help(g *GObject, i int) {
 	}
 }
 
-func nextSentence(g *GObject) string {
+func nextSentenceFlowey(g *GObject) string {
 	if g.PositionOfSentences < len(g.Sentences) {
 		g.PositionOfSentences++
 		if g.PositionOfSentences == len(g.Sentences) {
