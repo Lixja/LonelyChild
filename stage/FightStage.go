@@ -20,7 +20,7 @@ func startFightStage(s *game.Stage) {
 	player := &s.LCgame.Data.Player
 	enemy := s.Enemy
 	game.WriteWall()
-	game.WriteS("You will fight against: ")
+	game.WriteSlow("You will fight against: ", 80)
 	game.WritelnSlow(s.Enemy.Name, 100)
 	game.WriteWall()
 	game.Writeln(enemy.StartSentence)

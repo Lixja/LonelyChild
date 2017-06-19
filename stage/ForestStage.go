@@ -186,7 +186,7 @@ func five() {
 
 func six() {
 	game.WriteS("You look around.")
-	game.WriteSlow(". . .", 500)
+	game.WritelnSlow(". . .", 500)
 	answer := rand.Intn(10)
 	if answer < 4 {
 		if LCgame.SetStage(GetFightStage(gobject.GetWolf())) == 1 {

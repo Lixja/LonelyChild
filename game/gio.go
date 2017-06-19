@@ -25,7 +25,7 @@ func WriteS(msg string) {
 }
 
 func WriteWall() {
-	WriteS("-------------")
+	WritelnSlow("-------------", 10)
 }
 
 func Write(msg string) {
@@ -40,7 +40,7 @@ func GetInputWithOptionsV(options []string, question string) int {
 	WriteWall()
 	max := len(options)
 	for i := 0; i < max; i++ {
-		fmt.Print("[" + strconv.Itoa(i) + "] - " + options[i])
+		fmt.Println("[" + strconv.Itoa(i) + "] - " + options[i])
 	}
 	fmt.Print("\n")
 	fmt.Print(question + " ")
